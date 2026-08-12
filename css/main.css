@@ -69,7 +69,6 @@ body {
 
 #logo {
     position: absolute;
-    object-fit: cover;
     visibility: hidden;
     z-index: 2;
     filter:blur(1.5px);

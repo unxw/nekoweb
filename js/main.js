@@ -3,6 +3,31 @@ const wlocation = window.location.pathname;
 document.addEventListener('DOMContentLoaded', function() {
     confirmation();
 });
+const wait = ms => new Promise(resolve => setTimeout(resolve, ms));  
+
+/* reminder for ur fucking dumbass self... how does that thing work? ^^^^
+1. setTimeout() very simple it just runs something after a delay specified in the 2nd box -> imlazy(() => {console.log("balls");}, 1000);
+ignore the weird stuff at the start of it; if it works it works bruh
+
+2. 
+
+*/
+
+async function ps2thingy() { //async so that i can acutaly use await  
+    var vid = document.getElementById("intro");
+    document.getElementById("shade").classList.add("fade");
+    await wait(1500); //wait 1.5s
+    vid.style.visibility = "visible";
+    vid.play();
+    await wait(8800); //wait 8.8s
+    vid.style.visibility = "hidden";
+    await wait(500);
+    document.getElementById("shade").style.visibility = "hidden";
+    document.getElementById("shade").classList.remove("fade");
+
+    
+}
+
 
 console.image = function(url, size = 100) {
   const image = new Image();

@@ -9,23 +9,24 @@ const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 1. setTimeout() very simple it just runs something after a delay specified in the 2nd box -> imlazy(() => {console.log("balls");}, 1000);
 ignore the weird stuff at the start of it; if it works it works bruh
 
-2. 
+2. im lazy ill explain promise later hopefilly i dont forgot how it works by then
 
 */
 
 async function ps2thingy() { //async so that i can acutaly use await  
     var vid = document.getElementById("intro");
     document.getElementById("shade").classList.add("fade");
+    document.getElementById("logo").classList.add("logofade");
     await wait(1500); //wait 1.5s
     vid.style.visibility = "visible";
+    vid.volume = 0.3; // intro was loud as shit holy fuck
     vid.play();
     await wait(8800); //wait 8.8s
     vid.style.visibility = "hidden";
     await wait(500);
     document.getElementById("shade").style.visibility = "hidden";
     document.getElementById("shade").classList.remove("fade");
-
-    
+    document.getElementById("logo").classList.remove("logofade");
 }
 
 

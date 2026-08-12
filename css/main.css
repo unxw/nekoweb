@@ -1,0 +1,10 @@
+@font-face {
+  font-family: Helvetica;
+  src: url(Helvetica.ttf);
+}
+
+body {
+    font-family: Helvetica;
+    background: #000000;
+    color: white;
+}

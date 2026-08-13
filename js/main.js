@@ -1,8 +1,11 @@
 const wlocation = window.location.pathname;
 
 document.addEventListener('DOMContentLoaded', function() {
+    loadscreen()
+    deviceCheck();
     confirmation();
 });
+
 const wait = ms => new Promise(resolve => setTimeout(resolve, ms));  
 
 /* reminder for ur fucking dumbass self... how does that thing work? ^^^^
@@ -13,6 +16,20 @@ ignore the weird stuff at the start of it; if it works it works bruh
 
 */
 
+function deviceCheck(){
+var mobile = navigator.userAgent.toLowerCase().match(/mobile/i);
+if(mobile){
+    window.alert("youre on a mobile device, im lazy and have yet to fix support so the site might not work...!!");
+}
+}
+function loadscreen(){
+window.addEventListener('load', function() {
+    document.getElementById("loading").style.opacity = '0';
+    setTimeout(() => {
+        document.getElementById("loading").style.display = 'none';
+    }, 500);
+});
+}
 async function ps2thingy() { //async so that i can acutaly use await  
     var vid = document.getElementById("intro");
     document.getElementById("shade").classList.add("fade");

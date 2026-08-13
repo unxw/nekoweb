@@ -27,6 +27,7 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+    font-size: 2vh;
 
 }
 
@@ -74,6 +75,19 @@ body {
     filter:blur(1.5px);
     font-size: 3vh;
 }
+
+#loading {
+    position: absolute;
+    filter:blur(0.8px);
+    font-size: 3vh;
+    background-color: black;
+    transition: 0.25s;
+}
+#loading img{
+    padding: 5vh;
+    animation: spinny 2s linear infinite;
+}
+
 @keyframes fade {
     0% {
         visibility: visible;
@@ -122,5 +136,17 @@ body {
     100% {
         opacity: 0;
         visibility: hidden;
+    }
+}
+
+@keyframes spinny {
+    0% {
+        transform: rotate(0deg);
+    }
+    50%{
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
     }
 }

@@ -27,7 +27,7 @@ window.addEventListener('load', function() {
     document.getElementById("loading").style.opacity = '0';
     setTimeout(() => {
         document.getElementById("loading").style.display = 'none';
-    }, 500);
+    }, 250);
 });
 }
 async function ps2thingy() { //async so that i can acutaly use await  

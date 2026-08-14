@@ -1,0 +1,14 @@
+{
+    "songs": [
+        {
+            "title": "New Look (Slowed)",
+            "artist": "Nintendo",
+            "url": "/assets/audio/newlook.mp3"
+        },
+        {
+            "title": "Nintendo DSi Camera Album",
+            "artist": "Nintendo",
+            "url": "/assets/audio/cameraalbum.mp3"
+        }
+    ]
+}

@@ -1,0 +1,30 @@
+.site-box {
+    background-image: url("https://nixora.nekoweb.org/sitebox.png");
+    background-repeat: no-repeat;
+    color: #FFFFFF;
+    font-size:0px;
+    transform: scale(0.9);
+    transition: 0.3s ease-out;
+    border-radius: 10px;
+}
+
+.site-box:hover {
+	filter: invert(100%);
+    transform: scale(1);
+}
+
+.site-box .sitefeature {
+  opacity: 0;
+}
+
+.site-box > a > p {
+    color: white;
+    font-size: 0px;
+}
+.site-box > a > span {
+    color: white;
+}
+
+/* Style for your 'Follow on Nekoweb' button (<iframe src="https://nekoweb.org/frame/follow" frameborder="0" width="170" height="28"></iframe>) */
+.follow {
+}

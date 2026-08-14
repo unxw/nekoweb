@@ -74,6 +74,11 @@ button {
     z-index: 2;
     filter:blur(1.5px);
     font-size: 3vh;
+    text-shadow: 
+    -3px -3px 0 #000000,  /* top-left */
+     3px -3px 0 #000000,  /* top-right */
+    -3px  3px 0 #000000,  /* bottom-left */
+     3px  3px 0 #000000;  /* bottom-right */
 }
 
 #loading {

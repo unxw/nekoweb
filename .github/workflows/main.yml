@@ -16,4 +16,4 @@ jobs:
           nekoweb-api-key: ${{ secrets.NEKOWEB_API_KEY }}
           nekoweb-domain: 'nixora.nekoweb.org'
           nekoweb-username: 'nixora'
-          directory: 'public'
+          directory: '/'

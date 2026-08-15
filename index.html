@@ -7,27 +7,24 @@
     <script src="/js/main.js"></script>
 </head>
 <body>
+    <div id="reminder">
+        <h1>click anywhere for audio...</h1>
+        <p>i hate that browsers need u to intereact with the page first in order to play media D:</p>
+    </div>
     <div class="main" id="loading">
         <p> meow meow the site is still loading sorry...</p>
         <img src="/assets/img/meow.webp" alt="loading cat">
     </div>
     <div class="main" id="shade"></div>
-    <div class="main">
+    <video id='intro'><source src="/assets/vid/ps2.webm" type="video/webm"></video>
+    <div class="main" id="start">
         <div id="logo"><h1>the result of my unproductivity</h1></div>
-        <video id='intro'>
-            <source src="/assets/vid/ps2.webm" type="video/webm">
-        </video>
         <span>
         <h1>tromu</h1>
         <p>im still making the site... sorry... D:</p>
-        <super>"made with love "</super>
+        <super>"made with love and gayness"</super>
         <p>- nixxie</p>
         </span>
-        <button class="button" onclick="ps2thingy()">meow</button>
-        <!--<div class="changelog"> im not sure if i want to add this to main screen or start screen
-            <h1>changelog</h1>
-            <p> this is just a placeholder...</p>
-            <p> hi tho</p>
-        </div> -->
+        <div class="button" onclick="ps2thingy(); playAudio('/assets/audio/select.mp3')" onmouseenter="playAudio('/assets/audio/hover.mp3')"><h1>entry</h1></div>
     </div>
 </body>

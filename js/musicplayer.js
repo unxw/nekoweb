@@ -2,6 +2,7 @@ var song = null;
 var songs = [];
 var songNum = 0;
 var playing = false;
+var customAudio = false;
 
 async function initSongs(){
     const songList = "/assets/audio/songs.json"; // set songlist
@@ -10,8 +11,16 @@ async function initSongs(){
     songs = data.songs;
     song = new Audio(songs[songNum].url);
 
-    song.addEventListener("ended", (event) => {next()});
-    console.log ("songs loaded ok!!");
+    song.addEventListener("ended", (event) => {
+    if(!customAudio){
+        next();
+    }
+    else{
+        customAudio = false;
+    }
+    });
+    console.log(songs);
+    console.log ("songs loaded ok!! ^^^");
 }
 
 
@@ -22,11 +31,20 @@ function playSong(url) {
     }
     else{ // if its feched from songlist
     if(!song) return ("no song loaded yet");
+    song.src = songs[songNum].url;
+    getSongInfo();
     }
     song.load();
     playing = true;
     song.play();
-    if(!url)getSongInfo();
+}
+
+function playAudio(url){
+    const song = new Audio(url);
+    song.volume = 0.5;
+    customAudio = true;
+    song.load();
+    song.play();
 }
 
 function next(){
@@ -37,7 +55,8 @@ function next(){
             songNum = 0;
             console.log('looped around since u went over the array length :P (end to start)');
         }
-        playSong();   
+    song.src = songs[songNum].url;
+    playSong();   
 }
 
 function back(){

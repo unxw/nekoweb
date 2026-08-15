@@ -1,11 +1,13 @@
 const wlocation = window.location.pathname;
 
-document.addEventListener('DOMContentLoaded', function() {
-    loadscreen()
+document.addEventListener('DOMContentLoaded', async function() {
     deviceCheck();
-    initSongs();
+    await initSongs();
     confirmation();
+    hideloadscreen();
+    window.addEventListener('mousedown',  function() {homeSong()},{once: true});
 });
+
 
 const wait = ms => new Promise(resolve => setTimeout(resolve, ms));  
 
@@ -24,16 +26,34 @@ if(mobile){
 }
 console.log("you seen to be on... " + navigator.platform.toLowerCase());
 }
-function loadscreen(){
-window.addEventListener('load', function() {
+function hideloadscreen(){
     document.getElementById("loading").style.opacity = '0';
     setTimeout(() => {
         document.getElementById("loading").style.display = 'none';
     }, 250);
-});
 }
+
+function homeSong(){
+    homeAudio = document.createElement("audio");
+    homeAudio.src = "/assets/audio/bios.mp3";
+    homeAudio.autoplay = true;
+    homeAudio.volume = 0.5; // this is loud as shit 😿
+    document.body.appendChild(homeAudio);
+}
+
+async function fadeOut(name){
+    var i = name.volume;
+    while(i >= 0){
+        name.volume = i;
+        await wait(80);
+        i = i-0.05;
+    }
+    homeAudio.remove();
+}
+
 async function ps2thingy() { //async so that i can acutaly use await  
     var vid = document.getElementById("intro");
+    fadeOut(homeAudio);
     document.getElementById("shade").classList.add("fade");
     document.getElementById("logo").classList.add("logofade");
     await wait(1500); //wait 1.5s

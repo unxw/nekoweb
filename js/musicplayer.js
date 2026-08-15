@@ -1,35 +1,60 @@
 var song = null;
 var songs = [];
 var songNum = 0;
+var playing = false;
 
-function initSongs(){
-    const songList = "/assets/audio/songs.json";
-    fetch(songList)
-        .then(response => response.json())
-        .then(data => {songs = data.songs;
-            song = new Audio(songs[songNum].url || []);
-            song.addEventListener("ended", (event) => {
-                if(songNum > songs.length) {
-                    songNum = 0;
-                }
-                songNum++;
-                song.src = songs[songNum].url;
-                playSong();
-            });
-    });
+async function initSongs(){
+    const songList = "/assets/audio/songs.json"; // set songlist
+    const response = await fetch(songList);      // fetch songlist json   btw A LOT OF FUNCTIONS AHVE TO BE AWAIT SINCE THIS IS ASYNC 
+    const data = await response.json();
+    songs = data.songs;
+    song = new Audio(songs[songNum].url);
+
+    song.addEventListener("ended", (event) => {next()});
     console.log ("songs loaded ok!!");
 }
 
-function playSong() {
-    if(!song) return ("no song loaded yet");
-    if(song.readyState < 3) song.load();
-    song.play();
-    getSongInfo();
 
+function playSong(url) {
+    if(url){ //if url is inputted
+        song.src = url;
+        console.log("loaded from url:3 -> " + url);
+    }
+    else{ // if its feched from songlist
+    if(!song) return ("no song loaded yet");
+    }
+    song.load();
+    playing = true;
+    song.play();
+    if(!url)getSongInfo();
+}
+
+function next(){
+    pauseSong();
+    song.currentTime = 0;
+    songNum++;
+    if(songNum > (songs.length-1)) {
+            songNum = 0;
+            console.log('looped around since u went over the array length :P (end to start)');
+        }
+        playSong();   
+}
+
+function back(){
+    pauseSong();
+    song.currentTime = 0;
+    songNum--;
+    if(songNum < 0) {
+            songNum = (songs.length-1);
+            console.log('looped around since u went over the array length :P (start to end)');
+        }
+        song.src = songs[songNum].url;
+        playSong();   
 }
 
 function pauseSong() {
     if(!song) return ("no song loaded to pause");
+    playing = false;
     song.pause();
     return ("song paused");
 }

@@ -13,6 +13,13 @@ body {
     pointer-events: pointer;
 }
 
+iframe {
+    border: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+}
+
 .button {
     color: #505050;
     text-shadow: 
@@ -42,6 +49,13 @@ body {
     padding: 0;
     font-size: 2vh;
 
+}
+
+canvas{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;  
 }
 
 #intro{

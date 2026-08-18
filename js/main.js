@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     await initSongs();
     confirmation();
     removeElement('#loading');
-    window.addEventListener('mousedown',  function() {homeSong()},{once: true});
+    window.addEventListener('mouseover',  function() {homeSong()},{once: true});
 });
 
 
@@ -43,7 +43,6 @@ async function fadeOut(name){
         await wait(80);
         i = i-0.05;
     }
-    removeElement('.homeAudio');
 }
 
 function removeElement(selector) {
@@ -66,21 +65,30 @@ async function ps2thingy() { //async so that i can acutaly use await
     shade.classList.add("fade");
     logo.classList.add("logofade");
     await wait(1500); //wait 1.5s
+    removeElement('.homeAudio');
     vid.style.visibility = "visible";
     vid.volume = 0.3; // intro was loud as shit holy fuck
     vid.play();
     await wait(8800); //wait 8.8s
     vid.style.visibility = "hidden";
     start.remove();
+    iframeLoader('/assets/menu.html');
     await wait(500);
     shade.style.visibility = "hidden";
     shade.classList.remove("fade");
     logo.classList.remove("logofade");
+    window.alert('uhhh i need to finish the rest of the site mb... those orbs were where i left off so have fun with that i guess');
+}
+
+function iframeLoader(path){
+    frame = document.createElement('iframe');
+    frame.src = path;
+    document.body.appendChild(frame);
 }
 
 
 
-console.image = function(url, size = 100) {
+console.image = function(url, size) {
   const image = new Image();
   image.src = url;
   image.onload = function() {
@@ -89,7 +97,7 @@ console.image = function(url, size = 100) {
       'padding: ' + this.height/100*size + 'px ' + this.width/100*size + 'px;',
       'background: url('+ url +') no-repeat;',
       'background-size: contain;'
-     ].join(' ');
+     ].join('');
      console.log('%c ', style);
   };
 };

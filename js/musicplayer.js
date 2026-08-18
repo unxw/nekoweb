@@ -1,3 +1,5 @@
+//hi this is a music/audio handler i made its kinda flawed but it works for what i need it to do :3
+
 var song = null;
 var songs = [];
 var songNum = 0;

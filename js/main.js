@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     await initSongs();
     confirmation();
     removeElement('#loading');
-    window.addEventListener('mouseover',  function() {homeSong()},{once: true});
+    window.addEventListener('mousemove',  function() {homeSong()},{once: true});
 });
 
 
@@ -41,7 +41,17 @@ async function fadeOut(name){
     while(i >= 0){
         name.volume = i;
         await wait(80);
-        i = i-0.05;
+        i -= 0.05;
+    }
+}
+
+async function fadeIn(name){
+    var i = name.volume;
+    name.volume = 0;
+    while(i <= 1){
+        name.volume = i;
+        await wait(80);
+        i += 0.05;
     }
 }
 
@@ -70,6 +80,7 @@ async function ps2thingy() { //async so that i can acutaly use await
     vid.volume = 0.3; // intro was loud as shit holy fuck
     vid.play();
     await wait(8800); //wait 8.8s
+    playAudio('assets/audio/entry.mp3');
     vid.style.visibility = "hidden";
     start.remove();
     iframeLoader('/assets/menu.html');
@@ -77,7 +88,8 @@ async function ps2thingy() { //async so that i can acutaly use await
     shade.style.visibility = "hidden";
     shade.classList.remove("fade");
     logo.classList.remove("logofade");
-    window.alert('uhhh i need to finish the rest of the site mb... those orbs were where i left off so have fun with that i guess');
+    await wait(2700); // wait 2.7s for the menu entry sound to fade out a little
+    playSong();       // commence the music :3
 }
 
 function iframeLoader(path){

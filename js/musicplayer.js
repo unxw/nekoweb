@@ -4,7 +4,6 @@ var song = null;
 var songs = [];
 var songNum = 0;
 var playing = false;
-var customAudio = false;
 
 async function initSongs(){
     const songList = "/assets/audio/songs.json"; // set songlist
@@ -13,20 +12,13 @@ async function initSongs(){
     songs = data.songs;
     song = new Audio(songs[songNum].url);
 
-    song.addEventListener("ended", (event) => {
-    if(!customAudio){
-        next();
-    }
-    else{
-        customAudio = false;
-    }
-    });
     console.log(songs);
+    setVolume(0.5);
     console.log ("songs loaded ok!! ^^^");
 }
 
 
-function playSong(url) {
+function playSong(url) {                            //uhm ill fix the url system later i think it was somewhat broken iirc
     if(url){ //if url is inputted
         song.src = url;
         console.log("loaded from url:3 -> " + url);
@@ -39,12 +31,14 @@ function playSong(url) {
     song.load();
     playing = true;
     song.play();
+    song.addEventListener("ended", (event) => {
+        next();
+    });
 }
 
 function playAudio(url){
     const song = new Audio(url);
     song.volume = 0.5;
-    customAudio = true;
     song.load();
     song.play();
 }
@@ -83,7 +77,7 @@ function pauseSong() {
 function setVolume(vol){
     if(!song) return ("no song loaded to set volume");
     song.volume = vol;
-    return ("volume set to " + vol*100 + "% :P");
+    console.log("volume set to " + vol*100 + "% :P");
 }
 
 function getSongInfo() {

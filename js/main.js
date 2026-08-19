@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     await initSongs();
     confirmation();
     removeElement('#loading');
-    window.addEventListener('mousemove',  function() {homeSong()},{once: true});
+    window.addEventListener('mouseover',  function() {homeSong()},{once: true});
 });
 
 
@@ -29,6 +29,7 @@ console.log("you seen to be on... " + navigator.platform.toLowerCase());
 
 function homeSong(){
     removeElement('#reminder');
+    window.removeEventListener("mouseover",  function(){});
     homeAudio = document.createElement("audio");
     homeAudio.src = "/assets/audio/bios.mp3";
     homeAudio.autoplay = true;

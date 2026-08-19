@@ -52,8 +52,12 @@ iframe {
 }
 
 canvas{
-    position: absolute;
+    position: fixed;
     margin: 0;  
+}
+
+.menuUi .main{
+    font-size: inherit;
 }
 
 #intro{

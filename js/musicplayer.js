@@ -44,7 +44,6 @@ function playAudio(url){
 }
 
 function next(){
-    pauseSong();
     song.currentTime = 0;
     songNum++;
     if(songNum > (songs.length-1)) {
@@ -56,7 +55,6 @@ function next(){
 }
 
 function back(){
-    pauseSong();
     song.currentTime = 0;
     songNum--;
     if(songNum < 0) {
@@ -82,7 +80,6 @@ function setVolume(vol){
 
 function getSongInfo() {
     if(!song) return ("no song loaded to get info");
-    console.log(songs);
     console.log("Song: " + songs[songNum].title +
                 "\nArtist: " + songs[songNum].artist);
 }

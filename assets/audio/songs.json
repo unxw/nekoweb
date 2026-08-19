@@ -9,6 +9,26 @@
             "title": "Nintendo DSi Camera Album",
             "artist": "Nintendo",
             "url": "/assets/audio/cameraalbum.mp3"
+        },
+        {
+            "title": "3DS eShop (June 2011)",
+            "artist": "Nintendo",
+            "url": "/assets/audio/jn2011.mp3"
+        },
+        {
+            "title": "Miiverse (Loading)",
+            "artist": "Nintendo",
+            "url": "/assets/audio/miiverseloading.mp3"
+        },
+        {
+            "title": "Wii SD Photos List",
+            "artist": "Nintendo",
+            "url": "/assets/audio/wiisdcardphotolist.mp3"
+        },
+        {
+            "title": "DSi Main Menu",
+            "artist": "Nintendo",
+            "url": "/assets/audio/dsimenu.mp3"
         }
     ]
 }

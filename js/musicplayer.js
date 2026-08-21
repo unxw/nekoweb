@@ -43,7 +43,7 @@ function playAudio(url){
     song.play();
 }
 
-function next(){
+async function next(){
     song.currentTime = 0;
     songNum++;
     if(songNum > (songs.length-1)) {
@@ -51,7 +51,7 @@ function next(){
             console.log('looped around since u went over the array length :P (end to start)');
         }
     song.src = songs[songNum].url;
-    playSong();   
+    await playSong();   
 }
 
 function back(){
@@ -67,9 +67,16 @@ function back(){
 
 function pauseSong() {
     if(!song) return ("no song loaded to pause");
-    playing = false;
-    song.pause();
-    return ("song paused");
+    if(playing){
+        playing = false;
+        song.pause();
+        return ("song paused");
+    }
+    else{
+        playing = true;
+        song.play();
+        return ("song unpaused");
+    }
 }
 
 function setVolume(vol){

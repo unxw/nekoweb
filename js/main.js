@@ -67,6 +67,15 @@ function removeElement(selector) {
     }
 }
 
+async function loadMenu(){
+    menuElement = document.createElement('div');
+    menuElement.className = "menu";
+    document.body.appendChild(menuElement);
+    const menu = await fetch("/assets/menu.html");
+    document.querySelector(".menu").innerHTML = await menu.text();
+    initClock();
+}
+
 async function ps2thingy() { //async so that i can acutaly use await  
     var vid = document.getElementById("intro");
     const shade = document.getElementById("shade");
@@ -84,12 +93,13 @@ async function ps2thingy() { //async so that i can acutaly use await
     playAudio('assets/audio/entry.mp3');
     vid.style.visibility = "hidden";
     start.remove();
-    iframeLoader('/assets/menu.html');
+    iframeLoader('/assets/orbs.html');
     await wait(500);
     shade.style.visibility = "hidden";
     shade.classList.remove("fade");
     logo.classList.remove("logofade");
     await wait(2700); // wait 2.7s for the menu entry sound to fade out a little
+    loadMenu();
     playSong();       // commence the music :3
 }
 
@@ -99,7 +109,25 @@ function iframeLoader(path){
     document.body.appendChild(frame);
 }
 
+function initClock() {
+    const clock = document.querySelector(".clock");
+    function updateClock() {
+        const now = new Date();
 
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+        let seconds = now.getSeconds();
+
+        hours = hours.toString().padStart(2, "0");
+        minutes = minutes.toString().padStart(2, "0");
+        seconds = seconds.toString().padStart(2, "0");
+
+        clock.textContent = `${hours > 12 ? hours-12 : hours}:${minutes}:${seconds} ${hours > 12 ? "pm" : "am"}`;
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+}
 
 console.image = function(url, size) {
   const image = new Image();

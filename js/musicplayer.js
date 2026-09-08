@@ -88,5 +88,6 @@ function setVolume(vol){
 function getSongInfo() {
     if(!song) return ("no song loaded to get info");
     console.log("Song: " + songs[songNum].title +
-                "\nArtist: " + songs[songNum].artist);
+                "\nArtist: " + songs[songNum].artist +
+                "\nIndex: " + songNum);
 }

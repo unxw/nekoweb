@@ -72,9 +72,9 @@ function animate(){
     requestAnimationFrame(animate);
     composer.render()
     
-    angle += 0.01;         //im lazy i dont feel like making the sizes go back down hope i dont fry my memory
+    angle += 0.006;         //im lazy i dont feel like making the sizes go back down hope i dont fry my memory
     distance += 0.05;
-    modValue += 0.009;
+    modValue += 0.004;
     if(distance >= 360) distance = 0;
     spheres.forEach((sphere, i) =>{
         let sphereAngle = angle + toRadians(i * distance);

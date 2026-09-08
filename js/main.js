@@ -98,9 +98,15 @@ async function ps2thingy() { //async so that i can acutaly use await
     shade.style.visibility = "hidden";
     shade.classList.remove("fade");
     logo.classList.remove("logofade");
-    await wait(2700); // wait 2.7s for the menu entry sound to fade out a little
+    removeElement('#intro');
     loadMenu();
-    playSong();       // commence the music :3
+    var menu = document.getElementsByClassName("menu")[0];
+    await wait(2700); // wait 2.7s for the menu entry sound to fade out a little
+    menu.classList.add("fadein");
+    menu.style.visibility = "visible";
+    playSong(); 
+    await wait(300);
+    menu.classList.remove("fadein");
 }
 
 function iframeLoader(path){

@@ -24,6 +24,7 @@ const renderer = new THREE.WebGLRenderer({  // renders the scene, canvas is sele
 });
 const camera = new THREE.PerspectiveCamera(60, width/height, 0.1, 1000);    // prespective camera, fov 60, the aspect, and the far and near
 const controls = new OrbitControls( camera, renderer.domElement );          // controlls from the orbit controls import
+const timer = new THREE.Timer();                     
 controls.enablePan = false;
 controls.enableRotate = false;
 controls.enableZoom = false;
@@ -68,13 +69,16 @@ let angle = 0;
 let distance = 0;
 let modValue = 0;
 function animate(){
+    timer.update(); 
     controls.update();
     requestAnimationFrame(animate);
     composer.render()
+    const delta = timer.getDelta();
     
-    angle += 0.006;         //im lazy i dont feel like making the sizes go back down hope i dont fry my memory
-    distance += 0.05;
-    modValue += 0.004;
+    angle += 0.6 * delta;         //im lazy i dont feel like making the sizes go back down hope i dont fry my memory
+    distance += 9 * delta;
+    modValue += 0.7 * delta;
+    console.log(delta)
     if(distance >= 360) distance = 0;
     spheres.forEach((sphere, i) =>{
         let sphereAngle = angle + toRadians(i * distance);

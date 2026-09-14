@@ -94,13 +94,13 @@ async function ps2thingy() { //async so that i can acutaly use await
     vid.style.visibility = "hidden";
     start.remove();
     iframeLoader('/assets/orbs.html');
-    await wait(500);
+    await wait(600);
     shade.style.visibility = "hidden";
     shade.classList.remove("fade");
     logo.classList.remove("logofade");
     removeElement('#intro');
     loadMenu();
-    var menu = document.getElementsByClassName("menu")[0];
+    var menu = document.querySelector(".menu");
     await wait(2700); // wait 2.7s for the menu entry sound to fade out a little
     menu.classList.add("fadein");
     menu.style.visibility = "visible";
@@ -134,6 +134,8 @@ function initClock() {
     updateClock();
     setInterval(updateClock, 1000);
 }
+
+
 
 console.image = function(url, size) {
   const image = new Image();

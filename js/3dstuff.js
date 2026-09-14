@@ -13,10 +13,10 @@ var width = window.innerWidth;      // window height and width ofc
 var height = window.innerHeight;
 import * as THREE from 'three'; // import 3js package
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';             // the different extra imports, u can see what they are by name
-import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
-import { AfterimagePass } from 'three/addons/postprocessing/AfterimagePass.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';     // effect composer, used almost like a canvas from where u can add different effects on top of the renderer
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';             // read what i put for the const
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';   // bloom pass, used as an effect on the orbs to give them the glare glowing effect
+import { AfterimagePass } from 'three/addons/postprocessing/AfterimagePass.js';     // i was gonna use this to make the trail but i got lazy
 
 const scene = new THREE.Scene();            // three js scene
 const renderer = new THREE.WebGLRenderer({  // renders the scene, canvas is selected by the id orbs
@@ -24,12 +24,12 @@ const renderer = new THREE.WebGLRenderer({  // renders the scene, canvas is sele
 });
 const camera = new THREE.PerspectiveCamera(60, width/height, 0.1, 1000);    // prespective camera, fov 60, the aspect, and the far and near
 const controls = new OrbitControls( camera, renderer.domElement );          // controlls from the orbit controls import
-const timer = new THREE.Timer();                     
+const timer = new THREE.Timer();                                            // timer import, used to get the delta time for the animation loop                
 controls.enablePan = false;
 controls.enableRotate = false;
 controls.enableZoom = false;
 
-renderer.setPixelRatio(window.devicePixelRatio);        // sets pixel ratio
+renderer.setPixelRatio(window.devicePixelRatio);                            // sets pixel ratio
 renderer.setSize(width, height);                        // resizes the canvas size to the width and height of the window
 camera.position.setZ(15);                               // move the camera a little blehhhh
 controls.pan(-150,0);
@@ -68,6 +68,12 @@ for(var i = 0; i < 7; i++){
 let angle = 0;
 let distance = 0;
 let modValue = 0;
+/*
+    because this will run on various devices, each with different refresh rates, I need to make use of delta time
+    (the time between each frame). then i multiply the delta with what alters the orbs potion, and by doing this,
+    all animations should run at the same speed device wide
+
+*/
 function animate(){
     timer.update(); 
     controls.update();
@@ -75,10 +81,9 @@ function animate(){
     composer.render()
     const delta = timer.getDelta();
     
-    angle += 0.6 * delta;         //im lazy i dont feel like making the sizes go back down hope i dont fry my memory
+    angle += 0.6 * delta;  
     distance += 9 * delta;
     modValue += 0.7 * delta;
-    console.log(delta)
     if(distance >= 360) distance = 0;
     spheres.forEach((sphere, i) =>{
         let sphereAngle = angle + toRadians(i * distance);

@@ -1,4 +1,4 @@
-//hi this is a music/audio handler i made its kinda flawed but it works for what i need it to do :3
+//hi this is a music/audio handler i made its kinda flawed but it works for what i need it to do :3 (mostly)
 
 var song = null;
 var songs = [];
@@ -44,13 +44,13 @@ function playAudio(url){
 }
 
 async function next(){
+    song.currentTime = 0;
     songNum++;
     if(songNum > (songs.length-1)) {
             songNum = 0;
             console.log('looped around since u went over the array length :P (end to start)');
         }
     song.src = songs[songNum].url;
-    song.currentTime = 0;
     await playSong();   
 }
 

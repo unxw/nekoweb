@@ -57,7 +57,7 @@ const material = new THREE.MeshStandardMaterial( {
 
 const spheres = []
 for(var i = 0; i < 7; i++){
-    const sphere = new THREE.Mesh( geometry, material );
+    const sphere = new THREE.Mesh(geometry, material);
     sphere.position.setY = 2*Math.sin(toRadians(i*(360/7)));
     sphere.position.setX = 2*Math.cos(toRadians(i*(360/7)));
     sphere.position.setZ = 2*-Math.cos(toRadians(i*(360/7)));
@@ -75,11 +75,11 @@ let modValue = 0;
 
 */
 function animate(){
+    const delta = timer.getDelta();
     timer.update(); 
     controls.update();
     requestAnimationFrame(animate);
     composer.render()
-    const delta = timer.getDelta();
     
     angle += 0.6 * delta;  
     distance += 9 * delta;
